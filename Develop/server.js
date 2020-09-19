@@ -24,26 +24,38 @@ app.use(express.json());
 //I need to set up 5: GET:'/notes', GET'*', GET'/api/notes', POST'/api/notes', DELETE'/api/notes/:id'
 
 //#1: GET 'notes'
+// Basic HTTP route for GET:'notes' to notes.html
 app.get("/notes", function(req, res) {
-  res.sendFile(path.join('.public/notes.html', "notes.html"));
+  res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 
-//#2 is the last one- a "catch-all"
+
+
+//#2 is the last one- a "catch-all" SO SCROLL TO THE END
 
 
 //#3 GET '/api/notes'
 app.get('/api/notes', function(req,res){
-  
-  fs.readFile('./db/db.json', (err, data) => {
+    fs.readFile('./db/db.json', (err, data) => {
     if (err) throw err;
-    const parsedData = JSON.parse(data)
-    res.send(parsedData)
-
+    //ask BCS assistant had me condense these two lines into the following line
+    //const parsedData = JSON.parse(data)
+    //res.send(parsedData)
+    res.json(data);
   })
   
 //#4 POST '/api/notes'
-// Basic HTTP route for GET:'/api/notes' to read db.json and return all saves notes as JSON (incomplete)
+//POST `/api/notes` - Should receive a new note to save on the request body,
+//add it to the `db.json` file, and then return the new note to the client.
+app.post('api/notes', function(req,res) {
+  // req.body hosts is equal to the JSON post sent from the user
+  // This works because of our body parsing middleware
+  //this is kind of adapted from star wars
+  var newNote = req.body;
+  res.json(newNote);
+});
 
+//Q for askBCS: in #4, how to i add newNote to db.json?
 
 
 //#5 DELETE '/api/notes/:id'
@@ -55,25 +67,12 @@ app.get('/api/notes', function(req,res){
 })
 
 
-
-// Basic HTTP route for GET:'notes' to notes.html
- app.get("/notes", function(req, res) {
-       res.sendFile(path.join(__dirname, "/public/notes.html"));
-  });
-  
 //#2: GET '*'
 app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "public/index.html"));
 });
-
-  
-
-  
-
-
- 
 
 
 app.listen(PORT, function(){
-  console.log('Server is listening on Larry Bird Larry Bird')
+  console.log('App listening on PORT " + PORT')
 })
