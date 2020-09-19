@@ -51,7 +51,13 @@ app.post('api/notes', function(req,res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   //this is kind of adapted from star wars
+  fs.writeFile('./db/db.json', (err,data) => {
+    if (err) throw err;
+  })
+//from irwin:in post request, how do i get the data?
+
   var newNote = req.body;
+  console.log(newNote)
   res.json(newNote);
 });
 
@@ -67,8 +73,6 @@ app.post('api/notes', function(req,res) {
   app.delete('/api/notes/:id', function (req, res) {
     res.send(newNote)
   })
-
-})
 
 
 //#2: GET '*'
