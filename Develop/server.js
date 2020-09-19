@@ -56,13 +56,17 @@ app.post('api/notes', function(req,res) {
 });
 
 //Q for askBCS: in #4, how to i add newNote to db.json?
+//Q for askBCS: how do i give a note an id?
 
 
 //#5 DELETE '/api/notes/:id'
 
   // // Basic HTTP route for POST:'/api/notes' to receive new note to save on request body,
   // // add to db.json, and return the new note to the client
- 
+
+  app.delete('/api/notes/:id', function (req, res) {
+    res.send(newNote)
+  })
 
 })
 
