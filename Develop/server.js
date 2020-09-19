@@ -15,6 +15,18 @@ app.use(express.json());
 // Routes:
 //I need to set up 5: GET:'/notes', GET'*', GET'/api/notes', POST'/api/notes', DELETE'/api/notes/:id'
 
+//#1: GET 'notes'
+app.get("/notes", function(req, res) {
+  res.sendFile(path.join(__dirname, "notes.html"));
+});
+
+
+//#2: GET '*'
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
+//#3 GET '/api/notes'
 app.get('/api/notes', function(req,res){
   
   fs.readFile('./db/db.json', (err, data) => {
@@ -24,7 +36,9 @@ app.get('/api/notes', function(req,res){
 
   })
   
-  
+//#4 POST '/api/notes'
+
+//#5 DELETE '/api/notes/:id'
  
 
 })
@@ -61,12 +75,7 @@ app.get('/api/notes', function(req,res){
   //   res.sendFile(path.join(__dirname, "notes.html"));
   // });
 
-  // Basic HTTP route for DELETE:'/api/notes/:id' to receive query parameter containing ID of a note to delete,
-  // (find a way to give each note a unique "id" when it is saved)
-  // to delete the note, read all notes in the db.json files, remove the note with the given ID property,
-  //      then rewrite the notes to the db.json file
-
-//app.get(NO FUCKING IDEA!!!)
+ 
 
 
 app.listen(PORT, function(){
