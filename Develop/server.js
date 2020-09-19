@@ -1,3 +1,11 @@
+// Frank's to do list
+//try to get the endpoints to respond with the corresponding information
+  // -front end routes ( ie /users or /notes or /notes/:id)
+    //send HTML
+
+  // - back end routes ( ie /api/notes or //api anything)
+    // create, read, update or delete data in db. 
+      // - do the task and then send back the data
 
 var express = require('express');
 var fs = require('fs');
@@ -17,14 +25,11 @@ app.use(express.json());
 
 //#1: GET 'notes'
 app.get("/notes", function(req, res) {
-  res.sendFile(path.join(__dirname, "notes.html"));
+  res.sendFile(path.join('.public/notes.html', "notes.html"));
 });
 
+//#2 is the last one- a "catch-all"
 
-//#2: GET '*'
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
 
 //#3 GET '/api/notes'
 app.get('/api/notes', function(req,res){
@@ -37,19 +42,18 @@ app.get('/api/notes', function(req,res){
   })
   
 //#4 POST '/api/notes'
+// Basic HTTP route for GET:'/api/notes' to read db.json and return all saves notes as JSON (incomplete)
+
+
 
 //#5 DELETE '/api/notes/:id'
+
+  // // Basic HTTP route for POST:'/api/notes' to receive new note to save on request body,
+  // // add to db.json, and return the new note to the client
  
 
 })
-// Frank's to do list
-//try to get the endpoints to respond with the corresponding information
-  // -front end routes ( ie /users or /notes or /notes/:id)
-    //send HTML
 
-  // - back end routes ( ie /api/notes or //api anything)
-    // create, read, update or delete data in db. 
-      // - do the task and then send back the data
 
 
 // Basic HTTP route for GET:'notes' to notes.html
@@ -57,23 +61,15 @@ app.get('/api/notes', function(req,res){
        res.sendFile(path.join(__dirname, "/public/notes.html"));
   });
   
-  // Basic HTTP route for GET:'*' to index.html
-  // app.get("/index", function(req, res) {
-  //   res.sendFile(path.join(__dirname, "index.html"));
-  // });
+//#2: GET '*'
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
-  // // Basic HTTP route for GET:'/api/notes' to read db.json and return all saves notes as JSON (incomplete)
-
-  // app.get("*", function(req, res) {
-  //   res.sendFile(path.join(__dirname, "notes.html"));
-  // });
-
-  // // Basic HTTP route for POST:'/api/notes' to receive new note to save on request body,
-  // // add to db.json, and return the new note to the client
   
-  // app.get("*", function(req, res) {
-  //   res.sendFile(path.join(__dirname, "notes.html"));
-  // });
+
+  
+
 
  
 
