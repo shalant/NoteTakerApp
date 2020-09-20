@@ -42,8 +42,9 @@ app.get('/api/notes', function(req,res){
     //const parsedData = JSON.parse(data)
     //res.send(parsedData)
     res.json(data);
-  })
-  
+  });
+});
+
 //#4 POST '/api/notes'
 //POST `/api/notes` - Should receive a new note to save on the request body,
 //add it to the `db.json` file, and then return the new note to the client.
@@ -55,8 +56,12 @@ app.post('api/notes', function(req,res) {
     if (err) throw err;
   })
 //from irwin:in post request, how do i get the data?
-
-  var newNote = req.body;
+// adds key/value pairs to label note, uuidv1 labels the id
+  var newNote = {
+    title: req.body.title,
+    text: req.body.text,
+    id: uuidv1()
+  }
   console.log(newNote)
   res.json(newNote);
 });
@@ -72,7 +77,18 @@ app.post('api/notes', function(req,res) {
 
   app.delete('/api/notes/:id', function (req, res) {
     res.send(newNote)
-  })
+  });
+
+//from askBCS: 
+//1. Via the express route, you need to send the server the id of the note to be deleted 
+//   (using req params would be easiest)
+//2. Within the routes, you'll need to read the "db". In this assignment,
+//   a json file is used as a stand-in for a database. You're already reading a using the db in your GET route
+//3. Next is the tricky part, you have the whole database and the record to be deleted. What methods do you have
+//   at your disposal to filter out new data from old given a condition?
+//4. Once you have a new array with all but the record that was "deleted" the rewrite that new array as db.json
+//5. Send a response back to the front end like a 200 code or success message
+//   so the client know the delete was a success
 
 
 //#2: GET '*'
@@ -83,4 +99,4 @@ app.get("*", function(req, res) {
 
 app.listen(PORT, function(){
   console.log('App listening on PORT " + PORT')
-})
+});
