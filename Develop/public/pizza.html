@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> pIZZA TIME!!!!!!!!!!</h1>
+    <div id="toppings"></div>
+
+    <script>
+        function getPizzaInfo() {
+         
+              fetch('/api/pizza')
+                .then(res => res.json())
+                .then(data => console.log(data))
+              console.log(response)
+               // var toppings = response.toppings
+                //var contents = response.contents
+                var toppingsDiv = document.getElementById('toppings')
+
+
+                toppingsDiv.innerHTML = 'You ordered' + contents +  'with ' + toppings + ' on top.'
+
+                
+         
+        }
+
+        getPizzaInfo()
+
+    </script>
+</body>
+</html>

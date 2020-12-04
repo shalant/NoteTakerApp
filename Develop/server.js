@@ -9,12 +9,13 @@
 
 var express = require('express');
 var fs = require('fs');
-
 var path = require('path');
 
 // Sets up the Express App
 var app = express();
-var PORT = 3333;
+var PORT = process.env.PORT || 3333;
+
+app.listen(PORT, function() {
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -33,22 +34,31 @@ app.get("/notes", function(req, res) {
 
 //#2 is the last one- a "catch-all" SO SCROLL TO THE END
 
+app.get('/pizza', function(req,res) {
+  console.log('rEQUEST---->', req)
+  res.sendFile(path.join(__dirname, '/public/pizza.html'))
+})
+
+app.get('/api/pizza', function(req,res) {
+  console.log(req)
+  res.send('/api/pizza')
+})
 
 //#3 GET '/api/notes'
-app.get('/api/notes', function(req,res){
+app.get('/api/notes', function(request,response){
     fs.readFile('./db/db.json', (err, data) => {
     if (err) throw err;
     //ask BCS assistant had me condense these two lines into the following line
     //const parsedData = JSON.parse(data)
     //res.send(parsedData)
-    res.json(data);
+    response.json(data);
   });
 });
 
 //#4 POST '/api/notes'
 //POST `/api/notes` - Should receive a new note to save on the request body,
 //add it to the `db.json` file, and then return the new note to the client.
-app.post('api/notes', function(req,res) {
+app.post('/api/notes', function(req,res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   //this is kind of adapted from star wars
@@ -97,6 +107,6 @@ app.get("*", function(req, res) {
 });
 
 
-app.listen(PORT, function(){
-  console.log('App listening on PORT " + PORT')
+app.listen(PORT, function() {
+  console.log('App listening on PORT' + PORT)
 });
