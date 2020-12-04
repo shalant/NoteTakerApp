@@ -11,14 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, './public')));
 
-
-app.get("/notes", function(req, res) {
-  res.sendFile(path.join(__dirname, "/public/notes.html"));
-});
-
-
-
-  })
 //from irwin:in post request, how do i get the data?
 // adds key/value pairs to label note, uuidv1 labels the id
 //   var newNote = {
@@ -29,7 +21,6 @@ app.get("/notes", function(req, res) {
 //   console.log(newNote)
 //   res.json(newNote);
 // });
-
   
 require('./routes/apiRoutes')(app);
 require('./routes/htmlRoutes')(app);

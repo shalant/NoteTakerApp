@@ -11,6 +11,7 @@ var path = require('path');
 
 module.exports = function(app) {
 
+   //return the notes.html file 
     app.get('/notes', function(req, res) {
         res.sendFile(path.join(__dirname, '../public/notes.html'));
     });
@@ -23,6 +24,7 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, '../public/assets/css/styles.css'));
     });
 
+    //catch all to bring random addresses to index.html
     app.get('*', function(req, res) {
         res.sendFile(path.join(__dirname, '../public/index.html'));
     });
