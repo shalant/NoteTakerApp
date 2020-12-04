@@ -1,4 +1,13 @@
+// Frank's to do list
+//try to get the endpoints to respond with the corresponding information
+  // -front end routes ( ie /users or /notes or /notes/:id)
+    //send HTML
+
 var path = require('path');
+
+// Routes:
+//I need to set up 5: GET:'/notes', GET'*', GET'/api/notes', POST'/api/notes', DELETE'/api/notes/:id'
+
 
 module.exports = function(app) {
 
