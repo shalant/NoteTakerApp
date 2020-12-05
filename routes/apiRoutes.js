@@ -22,7 +22,6 @@ const noteData = require('../db/db.json');
 //I need to set up 5: GET:'/notes', GET'*', GET'/api/notes', POST'/api/notes', DELETE'/api/notes/:id'
 
 //#1: GET 'notes'
-// Basic HTTP route for GET:'notes' to notes.html
 module.exports = function(app) {
     app.get('/api/notes', function(req, res) {
         fs.readFileSync('./db/db.json', 'utf8');
@@ -31,9 +30,6 @@ module.exports = function(app) {
     //res.send(parsedData)
         return res.json(noteData);
     });
-
-//#2 is the last one- a "catch-all" SO SCROLL TO THE END
-
 
 //Q for askBCS: in #4, how to i add newNote to db.json?
 //Q for askBCS: how do i give a note an id?

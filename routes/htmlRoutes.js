@@ -11,10 +11,14 @@ var path = require('path');
 
 module.exports = function(app) {
 
+    // Basic HTTP route for GET:'notes' to notes.html
    //return the notes.html file 
     app.get('/notes', function(req, res) {
         res.sendFile(path.join(__dirname, '../public/notes.html'));
     });
+
+
+    //#2 is the last one- a "catch-all" SO SCROLL TO THE END
 
     app.get('/', function(req, res) {
         res.sendFile(path.join(__dirname, '../public/index.html'));
