@@ -10,7 +10,7 @@
 ## Installation
 ### From the command prompt, run npm install to install the necessary dependencies
 
-![png image] (/public/assets/images/notetakerexpress.png)
+![png image](/public/assets/images/notetakerexpress.png)
 
 ## License
 ### MIT
